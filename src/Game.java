@@ -27,15 +27,12 @@ public class Game extends JFrame {
         for (int i = 0; i < 16; i++) {
             buttons[i] = new JButton();
             buttons[i].setFont(new Font("Arial", Font. PLAIN, 40));
-            //buttons[i].setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
             buttons[i].setBackground(Color.WHITE);
             buttons[i].setForeground(Color.BLACK);
             int finalI = i;
             buttons[i].addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    //JButton buttonPressed = (JButton) e.getSource();
-                    //int pressedLocation = getLocation(buttonPressed.getText());
                     moves(finalI);
                 }
             });
@@ -54,7 +51,6 @@ public class Game extends JFrame {
         });
         panel.add(newGameButton);
 
-
         //initialize frame
         gameFrame = new JFrame("15 Game");
         gameFrame.setLocation(400, 200);
@@ -65,9 +61,6 @@ public class Game extends JFrame {
         //panel
         panel.setLayout(new GridLayout(5, 4));
         panel.setBackground(Color.GRAY);
-
-
-
 
         //content pane
         Container content = gameFrame.getContentPane();
@@ -147,27 +140,18 @@ public class Game extends JFrame {
         }
     }
 
-    public int getLocation(String lx) {
-        for (int i = 0; i < 16; i++) {
-            if (buttons[i].getText().equals(lx)) {
-                return (i);
-            }
-        }
-        return(1000);
-    }
-
+    //checks if game is completed
     private boolean isWin(){
         int correctPlaces = 15;
         for (int i = 0; i < correctPlaces; i++) {
             if(!buttons[i].getText().equals(String.valueOf(i+1))) {
-                //System.out.println(buttons[i].getText());
                 return false;
             }
         }
         return true;
     }
 
-    //turns board into a solvable
+    //turns board into a solvable new board
     private void makeSolvableBoard(){
         boolean isSolvable = false;
         while (!isSolvable) {
@@ -192,7 +176,6 @@ public class Game extends JFrame {
                 buttons[i].setText(String.valueOf(initialBoard[i]));
             }
         }
-
     }
 
 }
